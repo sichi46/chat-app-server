@@ -122,6 +122,17 @@ class AuthenticationController {
       const user = await prisma.user.findUnique({
         where: { id: req.user.id },
       });
+      if (!user) {
+        return res
+          .status(httpStatus.NOT_FOUND)
+          .json({ error: "User not found" });
+      }
+      return res.status(httpStatus.OK).json({
+        id: user.id,
+        fullname: user.fullName,
+        username: user.username,
+        profilePic: user.profilePic,
+      });
     } catch (error: any) {
       console.log("Error in the getMe controller", error.message);
       return res

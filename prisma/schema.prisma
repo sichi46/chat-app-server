@@ -34,7 +34,8 @@ model Conversation {
   updatedAt DateTime @updatedAt
 
   participantIds String[]
-  participant    User[]
+
+  participant User[]
 
   messageIds String[]
   messages   Message[]
